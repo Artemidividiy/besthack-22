@@ -1,5 +1,5 @@
 server:
-  port: 8088
+  port: 8080
 
 spring:
   jpa:
@@ -12,7 +12,7 @@ spring:
     datasource:
       driver-class-name: org.postgresql.Driver
     application:
-      name: hakatonDemo
+      name: besthack22
   datasource:
     driver-class-name: org.postgresql.Driver
     username: local_server
