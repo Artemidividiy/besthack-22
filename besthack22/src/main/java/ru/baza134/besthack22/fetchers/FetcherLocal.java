@@ -17,6 +17,7 @@ public class FetcherLocal implements Fetcher {
         StringBuilder contentBuilder = new StringBuilder();
         try (Stream<String> stream = Files.lines(Paths.get(String.valueOf(filepath)), StandardCharsets.UTF_8)){
             stream.forEach(s -> contentBuilder.append(s).append('\n'));
+            stream.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
