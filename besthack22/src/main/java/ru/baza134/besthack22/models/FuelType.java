@@ -5,19 +5,25 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "fuel_type")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class FuelType {
+  @Id
   private String name;
 
-  @OneToMany(mappedBy = "fuel_type", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "fuelType", cascade = CascadeType.ALL)
   private List<FuelTypeStationRelationship> fuelTypeStationRelationships = new ArrayList<>();
 }

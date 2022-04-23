@@ -6,17 +6,25 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "station")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Station {
+  @Id
+  Integer id;
+
   private String address;
 
   private String region;
