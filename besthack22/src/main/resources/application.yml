@@ -1,0 +1,20 @@
+server:
+  port: 8088
+
+spring:
+  jpa:
+    generate-ddl: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL94Dialect
+        temp:
+          use_jdbc_metadata_defaults: false
+    datasource:
+      driver-class-name: org.postgresql.Driver
+    application:
+      name: hakatonDemo
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: local_server
+    password: local_server
+    url: jdbc:postgresql://localhost:5432/besthack22
