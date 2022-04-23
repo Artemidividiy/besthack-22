@@ -7,12 +7,6 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL94Dialect
-        temp:
-          use_jdbc_metadata_defaults: false
-    datasource:
-      driver-class-name: org.postgresql.Driver
-    application:
-      name: besthack22
   datasource:
     driver-class-name: org.postgresql.Driver
     username: local_server

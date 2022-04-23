@@ -7,7 +7,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,14 +16,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class ContactEmail {
   @Id
-  Integer id;
+  private Integer id;
 
   private String email;
 
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "station_id")
   private Station station;
+
+  public ContactEmail(String email) {
+    this.email = email;
+  }
 }

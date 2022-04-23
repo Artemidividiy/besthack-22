@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,11 +18,10 @@ import lombok.Setter;
 @Table(name = "station")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class Station {
   @Id
-  Integer id;
+  private Integer id;
 
   private String address;
 
@@ -52,4 +50,17 @@ public class Station {
 
   @OneToMany(mappedBy = "station", cascade = CascadeType.ALL)
   private List<ContactPhone> contactPhone = new ArrayList<>();
+
+  public Station(String address, String region, String country,
+                 Float latitude, Float longitude, Boolean accessibleToDisabled,
+                 Boolean paymentByCard, Boolean paymentFromVehicle) {
+    this.address = address;
+    this.region = region;
+    this.country = country;
+    this.latitude = latitude;
+    this.longitude = longitude;
+    this.accessibleToDisabled = accessibleToDisabled;
+    this.paymentByCard = paymentByCard;
+    this.paymentFromVehicle = paymentFromVehicle;
+  }
 }
