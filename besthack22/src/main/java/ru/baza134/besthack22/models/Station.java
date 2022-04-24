@@ -46,10 +46,10 @@ public class Station {
   private List<FuelTypeStationRelationship> fuelTypeStationRelationships = new ArrayList<>();
 
   @OneToMany(mappedBy = "station", cascade = CascadeType.ALL)
-  private List<ContactEmail> contactEmail = new ArrayList<>();
+  private List<ContactEmail> contactEmails = new ArrayList<>();
 
   @OneToMany(mappedBy = "station", cascade = CascadeType.ALL)
-  private List<ContactPhone> contactPhone = new ArrayList<>();
+  private List<ContactPhone> contactPhones = new ArrayList<>();
 
   public Station(String address, String region, String country,
                  Float latitude, Float longitude, Boolean accessibleToDisabled,
