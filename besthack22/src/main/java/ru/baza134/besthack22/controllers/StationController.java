@@ -9,10 +9,13 @@ import ru.baza134.besthack22.fetchers.Fetcher;
 import ru.baza134.besthack22.fetchers.LocalFetcher;
 import ru.baza134.besthack22.fetchers.RemoteFetcher;
 import ru.baza134.besthack22.models.Station;
+import ru.baza134.besthack22.services.StationService;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +26,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RestController
 public class StationController {
   
+  @Autowired
+  StationService stationService;
+
   @RequestMapping(value="/", method=RequestMethod.POST)
   public ResponseEntity<?> fetch(@RequestBody String requestData) {
     JacksonJsonParser parser = new JacksonJsonParser();
@@ -61,15 +67,17 @@ public class StationController {
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
     try {
-      Map<String, String> mappingRules;
+      Map<String, String> mappingRules = new HashMap<>();
       for(Map.Entry<String, Object> entry : data.entrySet()) {
         if(entry.getKey().substring(0, 8) == "station.") {
           mappingRules.put((String) entry.getValue(), entry.getKey());
         }
       }
-      List<Station> stations = stationFactory.createStations();
+      List<Station> stations = stationFactory.createStations(mappingRules, sourceSerialized);
+      stations.forEach(station -> { stationService.save(station); });
     } catch (Exception exception) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
+    return new ResponseEntity<>(null, HttpStatus.OK);
   }
 }

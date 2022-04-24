@@ -15,5 +15,5 @@ public abstract class StationFactory {
     return new PropertyAttachmentHelper();
   }
 
-  abstract List<Station> createStations(Map<String, String> mappingRules, String payload) throws Exception;
+  public abstract List<Station> createStations(Map<String, String> mappingRules, String payload) throws Exception;
 }
