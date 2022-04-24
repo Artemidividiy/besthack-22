@@ -1,8 +1,6 @@
 package ru.baza134.besthack22.models;
 
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Random;
 
