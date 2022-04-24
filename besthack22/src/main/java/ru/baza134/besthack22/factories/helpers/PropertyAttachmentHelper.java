@@ -24,6 +24,9 @@ public class PropertyAttachmentHelper {
   
   public void tryAttachPropertyToStation(Station station, String propertyName, String value) {
     switch(propertyName) {
+      case "station.name":
+        station.setName(value);
+        break;
       case "station.address":
         station.setAddress(value);
         break;

@@ -61,7 +61,8 @@ public class StationController {
         stationFactory = new JSONStationFactory();
         break;
       case "csv":
-        stationFactory = new CSVStationFactory();
+        char CSVSeparator = ((String) data.get("CSVSeparator")).charAt(0);
+        stationFactory = new CSVStationFactory(CSVSeparator);
         break;
       default:
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -69,7 +70,7 @@ public class StationController {
     try {
       Map<String, String> mappingRules = new HashMap<>();
       for(Map.Entry<String, Object> entry : data.entrySet()) {
-        if(entry.getKey().substring(0, 8) == "station.") {
+        if(entry.getKey().substring(0, 8).equals("station.")) {
           mappingRules.put((String) entry.getValue(), entry.getKey());
         }
       }

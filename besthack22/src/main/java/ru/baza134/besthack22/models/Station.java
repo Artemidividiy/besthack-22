@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,7 +23,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Station {
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
+
+  private String name;
 
   private String address;
 
@@ -51,9 +56,10 @@ public class Station {
   @OneToMany(mappedBy = "station", cascade = CascadeType.ALL)
   private List<ContactPhone> contactPhones = new ArrayList<>();
 
-  public Station(String address, String region, String country,
+  public Station(String name, String address, String region, String country,
                  Float latitude, Float longitude, Boolean accessibleToDisabled,
                  Boolean paymentByCard, Boolean paymentFromVehicle) {
+    this.name = name;
     this.address = address;
     this.region = region;
     this.country = country;
